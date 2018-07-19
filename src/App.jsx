@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-
+import Main from './Main';
+import About from './About';
 
 class App extends Component {
   render() {
     return (
-      <h1>App hello</h1>
+      <div>
+        <Main />
+        <About />
+      </div>
     );
   }
 }
