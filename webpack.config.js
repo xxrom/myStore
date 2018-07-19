@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: './src/index.html',
@@ -14,6 +15,12 @@ module.exports = {
     filename: 'index_bundle.js'
   },
 
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  },
+
   resolve: {
     extensions: ['.js', '.jsx']
   },
@@ -24,17 +31,11 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
-          options: {
-            // presets: ['env', 'react', 'stage-3'],
-            // presets: ['@babel/preset-env', 'react', 'stage-3'],
-            // plugins: ['transform-runtime'],
-            // include: ['transform-es2015-arrow-functions', 'es6.map'],
-          }
+          loader: 'babel-loader'
         }
       }
     ]
   },
 
-  plugins: [htmlWebpackPlugin]
+  plugins: [htmlWebpackPlugin, new webpack.HotModuleReplacementPlugin()]
 };
