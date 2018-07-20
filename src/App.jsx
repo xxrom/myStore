@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
+import { Route } from 'react-router-dom';
+
 import Main from './Main';
 import About from './About';
+import Header from './Header';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Main />
-        <About />
+        <Route path="/" component={Header} />
+        <Route path="/" exact component={Main} />
+        <Route path="/about" component={About} />
       </div>
     );
   }

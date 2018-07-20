@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: './src/index.html',
-  filename: './index.html'
+  filename: './index.html',
 });
 
 module.exports = {
@@ -12,17 +12,17 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'index_bundle.js'
+    filename: 'index_bundle.js',
   },
 
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
   },
 
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
 
   module: {
@@ -31,11 +31,28 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader'
-        }
-      }
-    ]
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(jpe?g|png)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'img/',
+              publicPath: 'img/',
+            },
+          },
+        ],
+      },
+    ],
   },
 
-  plugins: [htmlWebpackPlugin, new webpack.HotModuleReplacementPlugin()]
+  plugins: [htmlWebpackPlugin, new webpack.HotModuleReplacementPlugin()],
 };

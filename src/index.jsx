@@ -1,19 +1,12 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import App from './App';
 
-render(<App />, document.getElementById('root'));
-
-
-// import React from 'react';
-// import { render } from 'react-dom';
-
-// const App = () => (
-//     <div>
-//       <h3>Our Application Is Alive</h3>
-//       <p>This isn’t reality. This — is fantasy.</p>
-//       <p>Yes I am quoting Star Trek I cant help it.</p>
-//     </div>
-//   );
-
-// render(<App />, document.getElementById('root'));
+render(
+  <Router>
+    <App />
+  </Router>,
+  document.getElementById('root')
+);
